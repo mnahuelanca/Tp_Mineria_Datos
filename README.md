@@ -1,118 +1,52 @@
-# Proyecto de Minería de Datos - Lesiones en Fútbol
+# Trabajo Práctico de Minería de Datos
 
-## Objetivo del proyecto
+## Tema
 
-Este proyecto busca analizar un conjunto de datos de lesiones de futbolistas para comprender mejor:
+Análisis del rendimiento académico de estudiantes a partir de sus calificaciones, hábitos de estudio, asistencia y factores contextuales.
 
-- cómo se distribuyen las edades de los jugadores,
-- cuáles son las lesiones más frecuentes,
-- si existe relación entre la edad del jugador y la duración de la recuperación,
-- y qué variables pueden ser útiles para predecir la cantidad de días o partidos perdidos por lesión.
+## Objetivo
 
-La idea principal es hacer un trabajo de exploración y análisis de datos (EDA) con enfoque en minería de datos aplicada al fútbol.
+Identificar de manera anticipada el nivel de rendimiento académico final de un estudiante, representado por la variable `Calificacion`, con categorías `A`, `B`, `C`, `D` y `F`.
 
----
+El análisis busca explorar qué variables académicas, conductuales y sociodemográficas pueden estar relacionadas con la calificación final y servir como potenciales predictores.
 
 ## Dataset
 
-El proyecto trabaja con el archivo:
+El dataset utilizado es **Students Grading Dataset**, disponible en Kaggle:
 
-- `futbol.csv`
+<https://www.kaggle.com/datasets/mahmoudelhemaly/students-grading-dataset>
 
-Este dataset contiene información como:
+La base contiene 5.000 observaciones y 23 variables, entre ellas:
 
-- nombre del jugador,
-- edad,
-- club,
-- liga,
-- tipo de lesión,
-- días de recuperación,
-- partidos perdidos,
-- temporada,
-- entre otros campos relevantes.
+- datos de identificación: estudiante, nombre, apellido y correo electrónico;
+- características personales y académicas: género, edad, departamento y asistencia;
+- calificaciones: nota parcial, nota final, promedio de tareas, promedio de cuestionarios, participación, proyectos y puntaje total;
+- hábitos y contexto: horas de estudio semanales, actividades extracurriculares, acceso a Internet, educación de los padres, ingresos familiares, nivel de estrés y horas de sueño;
+- variable objetivo: `Calificacion`.
 
----
+El archivo local utilizado por el notebook es `datos/estudiantes.csv`. Las columnas originales, que están en inglés, se renombran al español durante el análisis para facilitar su interpretación.
 
-## Hipótesis de trabajo
+## Trabajo realizado
 
-Una de las hipótesis que se está evaluando es:
+El notebook `tp.ipynb` incluye actualmente:
 
-> A mayor edad del futbolista, mayor podría ser la cantidad de días necesarios para recuperarse de una lesión.
+1. carga del archivo CSV con pandas;
+2. traducción y normalización de los nombres de las columnas;
+3. inspección de la estructura, tipos de datos y dimensiones;
+4. análisis de valores faltantes y valores únicos;
+5. estadística descriptiva de las variables numéricas;
+6. exploración de la distribución de las calificaciones;
+7. visualizaciones con Matplotlib y Seaborn;
+8. preparación del análisis de dependencia entre variables y la calificación mediante información mutua.
 
-Esta hipótesis se está revisando con gráficos y análisis descriptivos para ver si realmente se cumple o si la relación es más débil o variable de lo que parece.
-
----
-
-## ¿Qué se está haciendo hasta el momento?
-
-### 1. Carga y limpieza inicial del dataset
-
-Se realizó la carga del archivo CSV con pandas y se verificaron aspectos básicos del dataset, como:
-
-- cantidad de filas y columnas,
-- tipos de datos,
-- valores nulos,
-- registros duplicados,
-- cantidad de valores únicos por columna.
-
-Esto permite tener una primera idea de la calidad y estructura de los datos antes de analizar tendencias.
-
-### 2. Exploración descriptiva
-
-Se comenzaron a estudiar varios aspectos del dataset, entre ellos:
-
-- distribución de edades de los futbolistas,
-- top 10 lesiones más frecuentes,
-- comparación entre edad y días de lesión,
-- análisis de casos extremos con recuperaciones muy largas.
-
-### 3. Visualización de resultados
-
-Se generaron gráficos para representar:
-
-- distribución de la edad de los jugadores,
-- lesiones más comunes,
-- relación entre edad y días de recuperación,
-- promedio de días de lesión según la edad.
-
-Esto ayuda a interpretar los datos de manera visual y detectar patrones o anomalías.
-
-### 4. Análisis de casos extremos
-
-También se observaron ejemplos de lesiones cuya recuperación superó los 800 días, mostrando casos graves y complejos, en particular relacionados con lesiones de rodilla.
-
-### 5. Definición de próximos pasos
-
-El notebook deja planteados los siguientes pasos futuros:
-
-- verificar el formato de fechas,
-- analizar días de recuperación por tipo de lesión,
-- estudiar lesiones por posición,
-- comparar resultados por liga,
-- detectar outliers,
-- y definir posibles variables objetivo para modelos predictivos.
-
-Las variables que más interés tienen para predecir son:
-
-- `Games missed` → cuántos partidos pierde un jugador por lesión,
-- `Days` → cuántos días dura la recuperación.
-
----
+Durante la inspección inicial se detectaron valores faltantes principalmente en `Asistencia (%)`, `Promedio_Tareas` y `Nivel_Educativo_Padres`. Estos valores deben considerarse en las etapas posteriores de limpieza y modelado.
 
 ## Tecnologías utilizadas
 
 - Python
+- Jupyter Notebook
 - Pandas
 - NumPy
 - Matplotlib
 - Seaborn
-
----
-
-## Estructura del repositorio
-
-- `futbol.csv`: dataset principal
-- `Tp.ipynb`: cuaderno de trabajo con el análisis y visualizaciones
-- `README.md`: documentación del proyecto
-
----
+- Scikit-learn
